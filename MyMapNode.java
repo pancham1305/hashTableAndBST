@@ -1,8 +1,6 @@
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class MyMapNode<K, V> {
+class MyMapNode<K, V> {
     private K key;
     private V value;
     private MyMapNode<K, V> next;

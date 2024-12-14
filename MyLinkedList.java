@@ -1,6 +1,4 @@
-import java.util.Objects;
-
-public class MyLinkedList<K, V> {
+class MyLinkedList<K, V> {
     private MyMapNode<K, V> head;
 
     public void add(K key, V value) {
@@ -11,6 +9,8 @@ public class MyLinkedList<K, V> {
         }
 
         MyMapNode<K, V> current = head;
+        MyMapNode<K, V> prev = null;
+
         while (current != null) {
 
             if (current.getKey().equals(key)) {
@@ -18,12 +18,38 @@ public class MyLinkedList<K, V> {
                 return;
             }
 
-            if (current.getNext() == null)
-                break;
+            prev = current;
             current = current.getNext();
         }
 
-        current.setNext(new MyMapNode<>(key, value));
+        prev.setNext(new MyMapNode<>(key, value));
+    }
+
+    public boolean remove(K key) {
+
+        if (head == null) {
+            return false;
+        }
+
+        if (head.getKey().equals(key)) {
+            head = head.getNext();
+            return true;
+        }
+
+        MyMapNode<K, V> current = head;
+        MyMapNode<K, V> prev = null;
+
+        while (current != null) {
+            if (current.getKey().equals(key)) {
+
+                prev.setNext(current.getNext());
+                return true;
+            }
+            prev = current;
+            current = current.getNext();
+        }
+
+        return false;
     }
 
     public V get(K key) {
