@@ -1,9 +1,16 @@
 public class main {
+    
     public static void main(String[] args) {
-        WordFrequencyCounter counter = new WordFrequencyCounter();
-        String sentence = "To be or not to be";
+        WordFrequencyAnalyzer analyzer = new WordFrequencyAnalyzer();
 
-        counter.countWordFrequency(sentence);
-        counter.printWordFrequencies();
+        String paragraph = "Paranoids are not paranoid because they are paranoid " +
+                "but because they keep putting themselves deliberately " +
+                "into paranoid avoidable situations";
+
+        
+        analyzer.analyzeFrequency(paragraph);
+
+        
+        analyzer.printWordFrequencies();
     }
 }

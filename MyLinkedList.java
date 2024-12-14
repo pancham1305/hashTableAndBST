@@ -1,40 +1,31 @@
 import java.util.Objects;
 
-// Custom LinkedList implementation for MyMapNode
-class MyLinkedList<K, V> {
+public class MyLinkedList<K, V> {
     private MyMapNode<K, V> head;
-    private MyMapNode<K, V> tail;
 
-    // Add a new node to the LinkedList
     public void add(K key, V value) {
-        MyMapNode<K, V> newNode = new MyMapNode<>(key, value);
 
-        // If list is empty
         if (head == null) {
-            head = newNode;
-            tail = newNode;
+            head = new MyMapNode<>(key, value);
             return;
         }
 
-        // Check if key already exists
         MyMapNode<K, V> current = head;
         while (current != null) {
+
             if (current.getKey().equals(key)) {
-                // Update value if key exists
                 current.setValue(value);
                 return;
             }
+
             if (current.getNext() == null)
                 break;
             current = current.getNext();
         }
 
-        // Append new node
-        current.setNext(newNode);
-        tail = newNode;
+        current.setNext(new MyMapNode<>(key, value));
     }
 
-    // Get value for a given key
     public V get(K key) {
         MyMapNode<K, V> current = head;
         while (current != null) {
@@ -46,7 +37,17 @@ class MyLinkedList<K, V> {
         return null;
     }
 
-    // Print all nodes in the list
+    public boolean contains(K key) {
+        MyMapNode<K, V> current = head;
+        while (current != null) {
+            if (current.getKey().equals(key)) {
+                return true;
+            }
+            current = current.getNext();
+        }
+        return false;
+    }
+
     public void printList() {
         MyMapNode<K, V> current = head;
         while (current != null) {

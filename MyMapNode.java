@@ -1,25 +1,20 @@
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-// MyMapNode class representing a key-value pair for word frequency
-class MyMapNode<K, V> {
+public class MyMapNode<K, V> {
     private K key;
     private V value;
     private MyMapNode<K, V> next;
 
-    // Constructor
     public MyMapNode(K key, V value) {
         this.key = key;
         this.value = value;
         this.next = null;
     }
 
-    // Getters and Setters
     public K getKey() {
         return key;
-    }
-
-    public void setKey(K key) {
-        this.key = key;
     }
 
     public V getValue() {
@@ -38,7 +33,6 @@ class MyMapNode<K, V> {
         this.next = next;
     }
 
-    // Equals and HashCode for proper comparison
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -46,17 +40,16 @@ class MyMapNode<K, V> {
         if (o == null || getClass() != o.getClass())
             return false;
         MyMapNode<?, ?> myMapNode = (MyMapNode<?, ?>) o;
-        return Objects.equals(key, myMapNode.key) &&
-                Objects.equals(value, myMapNode.value);
+        return Objects.equals(key, myMapNode.key);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(key, value);
+        return Objects.hash(key);
     }
 
     @Override
     public String toString() {
-        return "(" + key + ":" + value + ")";
+        return key + ":" + value;
     }
 }
